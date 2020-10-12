@@ -2,6 +2,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode=production",
+    "serve-single-spa": "npm run build && npx serve --cors -l 9001 dist",
     "analyze": "webpack --mode=production --env.analyze=true",
     "lint": "eslint src --ext js,ts,tsx",
     "format": "prettier --write './**'",

@@ -4,7 +4,7 @@ const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 module.exports = (webpackConfigEnv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "Systek",
-    projectName: "react",
+    projectName: "home",
     externals: ["react", "react-dom"],
     webpackConfigEnv,
   });

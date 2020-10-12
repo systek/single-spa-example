@@ -5,6 +5,7 @@ module.exports = (webpackConfigEnv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "Systek",
     projectName: "styles",
+    externals: ["react", "react-dom"],
     webpackConfigEnv,
   });
 

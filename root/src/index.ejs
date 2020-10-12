@@ -17,7 +17,7 @@
     This CSP allows any SSL-enabled host, but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' https: localhost:*; script-src 'unsafe-eval' 'unsafe-inline' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' 'unsafe-eval' https:; object-src 'none';">
   <meta name="importmap-type" content="systemjs-importmap" />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -31,13 +31,31 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
-  <script type="systemjs-importmap">
+  <% if (isLocal) { %>
+    <script type="systemjs-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.development.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.development.min.js",
+        "vue": "https://unpkg.com/vue@3.0.0/dist/vue.global.js",
+        "vue-router": "https://unpkg.com/vue-router@3.4.6/dist/vue-router.js"
       }
     }
   </script>
+  <% } else { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+        "vue": "https://unpkg.com/vue@3.0.0/dist/vue.global.js",
+        "vue-router": "https://unpkg.com/vue-router@3.4.6/dist/vue-router.js"
+      }
+    }
+  </script>
+  <% } %>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js" as="script">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
@@ -47,8 +65,27 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
-        "@Systek/root-config": "//localhost:9000/Systek-root-config.js"
+        "@Systek/root-config": "//localhost:9000/Systek-root-config.js",
+        "@Systek/styles": "//localhost:9001/Systek-styles.js",
+        "@Systek/react": "//localhost:9002/Systek-react.js",
+        "@Systek/angular": "//localhost:9003/main.js",
+        "@Systek/vue": "//localhost:9004/js/app.js",
+        "@Systek/home": "//localhost:9005/Systek-home.js",
+        "@Systek/footer": "//localhost:9006/Systek-footer.js"
+      }
+    }
+  </script>
+  <% } else { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@Systek/root-config": "https://single-spa-example-root-git-main.systek.vercel.app/Systek-root-config.js",
+        "@Systek/styles": "https://single-spa-example-styles-git-main.systek.vercel.app/Systek-styles.js",
+        "@Systek/react": "https://single-spa-example-react-git-main.systek.vercel.app/Systek-react.js",
+        "@Systek/angular": "https://single-spa-example-angular-git-main.systek.vercel.app/main.js",
+        "@Systek/vue": "https://single-spa-example-vue-git-main.systek.vercel.app/js/app.js",
+        "@Systek/home": "https://single-spa-example-home-git-main.systek.vercel.app/Systek-home.js",
+        "@Systek/footer": "https://single-spa-example-footer-git-main.systek.vercel.app/Systek-home.js"
       }
     }
   </script>
@@ -58,7 +95,7 @@
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
     Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
   -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.10.3/dist/zone.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/zone.js@0.10.3/dist/zone.min.js"></script>
 
   <% if (isLocal) { %>
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.16.0/dist/import-map-overrides.js"></script>
@@ -74,19 +111,29 @@
 
   <template id="single-spa-layout">
     <single-spa-router>
-      <!-- <nav>
-        <application name="@<%- orgName %>/navbar"></application>
-      </nav> -->
-      <main>
-        <route default>
-          <application name="@single-spa/welcome"></application>
+      <nav class="topnav">
+        <application name="@Systek/home"></application>
+      </nav>
+      <div class="main-content">
+        <route path="angular">
+          <application name="@Systek/angular"></application>
         </route>
-      </main>
+        <route path="react">
+          <application name="@Systek/react"></application>
+        </route>
+        <route path="vue">
+          <application name="@Systek/vue"></application>
+        </route>
+      </div>
+      <footer>
+        <application name="@Systek/footer"></application>
+      </footer>
     </single-spa-router>
   </template>
 </head>
 <body>
   <script>
+    System.import('@Systek/styles');
     System.import('@Systek/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
