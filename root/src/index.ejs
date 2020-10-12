@@ -37,9 +37,7 @@
       "imports": {
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.development.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.development.min.js",
-        "vue": "https://unpkg.com/vue@3.0.0/dist/vue.global.js",
-        "vue-router": "https://unpkg.com/vue-router@3.4.6/dist/vue-router.js"
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.development.min.js"
       }
     }
   </script>
@@ -49,9 +47,7 @@
       "imports": {
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
-        "vue": "https://unpkg.com/vue@3.0.0/dist/vue.global.js",
-        "vue-router": "https://unpkg.com/vue-router@3.4.6/dist/vue-router.js"
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js"
       }
     }
   </script>
@@ -69,7 +65,6 @@
         "@Systek/styles": "//localhost:9001/Systek-styles.js",
         "@Systek/react": "//localhost:9002/Systek-react.js",
         "@Systek/angular": "//localhost:9003/main.js",
-        "@Systek/vue": "//localhost:9004/js/app.js",
         "@Systek/home": "//localhost:9005/Systek-home.js",
         "@Systek/footer": "//localhost:9006/Systek-footer.js"
       }
@@ -80,10 +75,9 @@
     {
       "imports": {
         "@Systek/root-config": "https://single-spa-example-root-git-main.systek.vercel.app/Systek-root-config.js",
-        "@Systek/styles": "https://single-spa-example-styles-git-main.systek.vercel.app/Systek-styles.js",
-        "@Systek/react": "https://single-spa-example-react-git-main.systek.vercel.app/Systek-react.js",
-        "@Systek/angular": "https://single-spa-example-angular-git-main.systek.vercel.app/main.js",
-        "@Systek/vue": "https://single-spa-example-vue-git-main.systek.vercel.app/js/app.js",
+        "@Systek/styles": "https://single-spa-example-apps-styles-git-main.systek.vercel.app/Systek-styles.js",
+        "@Systek/react": "https://single-spa-example-apps-react-git-main.systek.vercel.app/Systek-react.js",
+        "@Systek/angular": "https://single-spa-example-apps-angular-git-main.systek.vercel.app/main.js",
         "@Systek/home": "https://single-spa-example-home-git-main.systek.vercel.app/Systek-home.js",
         "@Systek/footer": "https://single-spa-example-footer-git-main.systek.vercel.app/Systek-footer.js"
       }
@@ -120,9 +114,6 @@
         </route>
         <route path="react">
           <application name="@Systek/react"></application>
-        </route>
-        <route path="vue">
-          <application name="@Systek/vue"></application>
         </route>
       </div>
       <footer>

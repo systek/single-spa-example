@@ -7,8 +7,4 @@ export const links = [
     name: "Angular",
     href: "/angular",
   },
-  {
-    name: "Vue",
-    href: "/vue",
-  },
 ];
