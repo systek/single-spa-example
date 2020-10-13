@@ -4,9 +4,18 @@ import {
   constructRoutes,
   constructLayoutEngine,
 } from "single-spa-layout";
+import { tokenStore } from "./tokenStore";
 
 const routes = constructRoutes(
-  document.querySelector("#single-spa-layout") as HTMLTemplateElement
+  document.querySelector("#single-spa-layout") as HTMLTemplateElement,
+  {
+    loaders: {},
+    props: {
+      title: "Systek",
+      tokenStore: tokenStore,
+      version: "2020",
+    },
+  }
 );
 const applications = constructApplications({
   routes,

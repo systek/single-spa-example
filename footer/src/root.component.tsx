@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function Root(props) {
-  return <section>{props.name} is mounted!</section>;
+export default function Root({ name, version }) {
+  return (
+    <section>
+      {name} is mounted! ({version})
+    </section>
+  );
 }
