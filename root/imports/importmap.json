@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
+    "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+    "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+    "@Systek/root-config": "https://single-spa-example-root-git-main.systek.vercel.app/Systek-root-config.js",
+    "@Systek/styles": "https://single-spa-example-apps-styles-git-main.systek.vercel.app/Systek-styles.js",
+    "@Systek/react": "https://single-spa-example-apps-react-git-main.systek.vercel.app/Systek-react.js",
+    "@Systek/angular": "https://single-spa-example-apps-angular-git-main.systek.vercel.app/angular/main.js",
+    "@Systek/home": "https://single-spa-example-home-git-main.systek.vercel.app/Systek-home.js",
+    "@Systek/footer": "https://single-spa-example-footer-git-main.systek.vercel.app/Systek-footer.js"
+  }
+}
