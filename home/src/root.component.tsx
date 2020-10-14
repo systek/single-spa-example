@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, BrowserRouter } from "react-router-dom";
 import { links } from "./root.helper";
+// @ts-ignore
+import { publicApiFunction } from "@Systek-styles";
 
 export default function Root({ title }) {
   return (
@@ -21,6 +23,7 @@ export default function Root({ title }) {
           </BrowserRouter>
         </div>
       </div>
+      {/*<button onClick={publicApiFunction}>Click me!</button>*/}
     </section>
   );
 }
